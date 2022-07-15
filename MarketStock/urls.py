@@ -1,11 +1,19 @@
 from django.contrib import admin
 from django.urls import path
 import dashboard.views
+import market.views
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', dashboard.views.index, name='Главная страница'),
+    path('dashboard/', dashboard.views.index, name='Главная страница'),
     path('market/', dashboard.views.market, name='Супермаркеты'),
     path('product/', dashboard.views.product, name='Продукты'),
-    path('order/', dashboard.views.order, name='Поставки')
+    path('order/', dashboard.views.order, name='Поставки'),
+    path('register/', market.views.register, name='Регистрация'),
+    path('', auth_views.LoginView.as_view(template_name='market/login.html'), name='Вход'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='market/logout.html'), name='Выход'),
+    path('profile/', market.views.profile, name='Профиль'),
+    path('profileupd/', market.views.profile_update, name='Изменить профиль')
 ]

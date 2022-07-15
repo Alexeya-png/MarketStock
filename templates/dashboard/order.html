@@ -1,2 +1,61 @@
 {% extends 'partials/base.html' %}
 {% block title %}Поставки{% endblock %}
+
+
+{% block content %}
+     <!--Table-->
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-8">
+                <table class="table bg-white">
+                    <thead class="bg-info">
+                        <tr class="text-white">
+                            <th scope="col">#</th>
+                            <th scope="col">Товар</th>
+                            <th scope="col">Категория</th>
+                            <th scope="col">Количество</th>
+                            <th scope="col">Доставлено</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Помидоры</td>
+                            <td>Овощи</td>
+                            <td>40</td>
+                            <td>
+                                АТБ №1
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Огурцы</td>
+                            <td>Овощи</td>
+                            <td>30</td>
+                            <td>
+                                АТБ №2
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Яйца</td>
+                            <td>Молочное</td>
+                            <td>100</td>
+                            <td>
+                                АТБ №3
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!--End Table-->
+{% endblock %}

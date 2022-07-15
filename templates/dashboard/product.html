@@ -1,6 +1,6 @@
 {% extends 'partials/base.html' %}
 {% block title %}Продукты{% endblock %}
-
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -13,34 +13,17 @@
                 <div class="border bg-white p-3">
                     <h4>Добавить продукт</h4>
                     <hr>
-                    <form action="">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Название</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Количество</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
-                        </div>
-                        <div class="form-group ">
-                            <label for="inputState">Категория</label>
-                            <select id="inputState" class="form-control">
-                                <option selected>Выбрать...</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form |crispy }}
                         <input class="btn btn-success btn-block" type="submit" value="Add Product">
-
                     </form>
                 </div>
             </div>
             <div class="col-md-8">
                 <table class="table bg-white">
                     <thead class="bg-info">
-                        <tr class="text-white">
-                            <th scope="col">#</th>
+                        <tr class="text-white"> 
                             <th scope="col">Название</th>
                             <th scope="col">Категория</th>
                             <th scope="col">Количество</th>
@@ -48,36 +31,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                         {% for item in items %}
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Помидоры</td>
-                            <td>Овощи</td>
-                            <td>1000</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.category }}</td>
+                            <td>{{ item.quantity }}</td>
                             <td>
-                                <a class="btn btn-info btn-sm" href="">Изменить</a>
-                                <a class="btn btn-danger btn-sm" href="">Удалить</a>
+                                <a class="btn btn-info btn-sm" href="{% url 'Изменить продукт' item.id %}">Изменить</a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'Удалить продукт' item.id %}">Удалить</a>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Огурцы</td>
-                            <td>Овощи</td>
-                            <td>1200</td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="">Изменить</a>
-                                <a class="btn btn-danger btn-sm" href="">Удалить</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Яйца</td>
-                            <td>Молочное</td>
-                            <td>600</td>
-                            <td>
-                                <a class="btn btn-info btn-sm" href="">Изменить</a>
-                                <a class="btn btn-danger btn-sm" href="">Удалить</a>
-                            </td>
-                        </tr>
+                          {% endfor %}
                     </tbody>
                 </table>
             </div>

@@ -10,6 +10,8 @@ urlpatterns = [
     path('dashboard/', dashboard.views.index, name='Главная страница'),
     path('market/', dashboard.views.market, name='Супермаркеты'),
     path('product/', dashboard.views.product, name='Продукты'),
+    path('product/delete/<int:pk>/', dashboard.views.product_delete, name='Удалить продукт'),
+    path('products/edit/<int:pk>/', dashboard.views.product_edit, name='Изменить продукт'),
     path('order/', dashboard.views.order, name='Поставки'),
     path('register/', market.views.register, name='Регистрация'),
     path('', auth_views.LoginView.as_view(template_name='market/login.html'), name='Вход'),
